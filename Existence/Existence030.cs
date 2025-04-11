@@ -19,7 +19,7 @@ namespace Ideal.Existence
             InitExistence();
         }
 
-        protected new void InitExistence()
+        protected override void InitExistence()
         {
             Experiment e1 = AddOrGetExperience(LABEL_E1);
             Experiment e2 = AddOrGetExperience(LABEL_E2);
@@ -33,7 +33,7 @@ namespace Ideal.Existence
 
         public override string Step()
         {
-            List<IAnticipation> anticipations = Anticipate(); // <-- this cannot be null
+            List<IAnticipation> anticipations = Anticipate();
             Experiment experience = SelectInteraction(anticipations).GetExperience();
 
             Result result = ReturnResult030(experience);
@@ -55,7 +55,7 @@ namespace Ideal.Existence
         /// Learn the composite interaction from the previous enacted interaction and the current enacted interaction.
         /// </summary>
         /// <param name="interaction">The interaction.</param>
-        public void LearnCompositeInteraction(Interaction030 interaction)
+        public virtual void LearnCompositeInteraction(Interaction030 interaction)
         {
             Interaction030 preInteraction = GetEnactedInteraction();
             Interaction030 postInteraction = interaction;
@@ -68,7 +68,7 @@ namespace Ideal.Existence
         /// <param name="preInteraction">The composite interaction's pre-interaction.</param>
         /// <param name="postInteraction">The composite interaction's post-interaction.</param>
         /// <returns>The learned composite interaction.</returns>
-        public Interaction030 AddOrGetCompositeInteraction(Interaction030 preInteraction, Interaction030 postInteraction)
+        public virtual Interaction030 AddOrGetCompositeInteraction(Interaction030 preInteraction, Interaction030 postInteraction)
         {
             int valence = preInteraction.GetValence() + postInteraction.GetValence();
             Interaction030 interaction = (Interaction030)AddOrGetInteraction(preInteraction.GetLabel() + postInteraction.GetLabel());
@@ -106,8 +106,6 @@ namespace Ideal.Existence
         {
             anticipations.Sort();
             Interaction intendedInteraction;
-            if (anticipations.Count == 0)
-                Anticipate();
 
             if (anticipations.Count > 0)
             {
@@ -127,7 +125,7 @@ namespace Ideal.Existence
         /// Get the list of activated interactions. An activated interaction is a composite interaction whose preInteraction matches the enactedInteraction.
         /// </summary>
         /// <returns>The list of anticipations</returns>
-        public List<Interaction> GetActivatedInteractions()
+        public virtual List<Interaction> GetActivatedInteractions()
         {
             List<Interaction> activatedInteractions = new List<Interaction>();
             if (GetEnactedInteraction() != null)
@@ -171,8 +169,9 @@ namespace Ideal.Existence
         }
 
         /// <summary>
-        /// Of Environment030
-        /// Results in R1 when the current experience equals the previous experience and in R2 when the current experience differs from the previous experience.
+        /// Environment030
+        /// * Results in R1 when the current experience equals the previous experience
+        /// * and in R2 when the current experience differs from the previous experience.
         /// </summary>
         /// <param name="experience">The experience.</param>
         /// <returns></returns>       

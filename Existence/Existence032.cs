@@ -8,6 +8,7 @@ namespace Ideal.Existence
     {
         public override string Step()
         {
+
             List<IAnticipation> anticipations = Anticipate();
             Interaction032 intendedInteraction = (Interaction032)SelectInteraction(anticipations);
             Experiment experience = intendedInteraction.GetExperience();

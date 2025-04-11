@@ -20,7 +20,7 @@
             return _label;
         }
 
-        public Experiment GetExperience()
+        public virtual Experiment GetExperience()
         {
             return _experience;
         }

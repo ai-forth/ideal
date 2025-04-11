@@ -18,7 +18,7 @@ namespace Ideal.Existence
         { 
             InitExistence();
         }
-        protected new void InitExistence()
+        protected override void InitExistence()
         {
             Experiment e1 = AddOrGetExperience(LABEL_E1);
             Experiment e2 = AddOrGetExperience(LABEL_E2);

@@ -36,7 +36,7 @@ namespace Ideal.Existence
 
         }
 
-        public new void LearnCompositeInteraction(Interaction030 enactedInteraction)
+        public override void LearnCompositeInteraction(Interaction030 enactedInteraction)
         {
             Interaction030 preInteraction = GetEnactedInteraction();
             Interaction030 postInteraction = enactedInteraction;

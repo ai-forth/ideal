@@ -29,7 +29,7 @@ namespace Ideal.Existence
             InitExistence();
         }
 
-        protected void InitExistence()
+        protected virtual void InitExistence()
         {
             Experiment e1 = AddOrGetExperience(LABEL_E1);
             AddOrGetExperience(LABEL_E2);
@@ -95,7 +95,7 @@ namespace Ideal.Existence
             return Experiences.ContainsKey(label) ? Experiences[label] : null;
         }
 
-        protected static Experiment CreateExperience(string label)
+        protected virtual Experiment CreateExperience(string label)
         {
             return new Experiment(label);
         }
