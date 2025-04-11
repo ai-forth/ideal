@@ -1,0 +1,37 @@
+﻿May 2024
+Development notes for ideal (all branches)
+
+21.05.2024
+	1342: Total project notes kept solelyl on the 01 branch. Evolving my concept of a(n ideal) hybridization of precise and imprecise computation that can run anywhere.
+	1415: It seems development has stopped with the unstable implmenetion on the 03 branch and the other subsequent branches are not completed.
+24.11.2024
+	1842: A note to add additional debugging from level-3 forward such as more verbosity.
+27.11.2024
+	1145: Branch 03. Line 105. Stopped with: Interaction030 affordedInteraction = (Anticipation030)anticipations[0].GetInteraction(); from the refactoring exercise. Also, how can the internals of the algorithm me more transparent than output to log?
+30.11.2024
+	1237: Bringing ideal to arm64 to emphasize our journey to the small and not the large and cumbersome.
+02.12.2024
+	1636: Branch 03. Fixed by a simple type-cast operation. Copilot spotted it.
+	2129: All modules implemented except the two game environments. Testing is needed to sort null references.
+03.12.2024
+	1312: Next task is to debug the errors in the dictionary and propagate changes through three, four, and five.
+04.12.2024
+	1126: The code is complete and an area of Trace/Tracer for the Environments in Branch 05 is hidden from the project, as a trace logger. Unfinished.
+	1153: Upgrade to dotnet 9.0 for all branches.
+14.12.2024
+	1455: Demarcating notes here and in ideal-forth, the sister repository.
+	1515: Cannot have an anticipation without a prerequisite interaction.
+18.12.2024
+	1108: Heiserman anticipated ideal (RL) but wasn't able to assign this level of technical detail.
+19.01.2025
+	1147: Imperative is to get the evb-codebase complete and this project is the first new addition.
+30.01.2025
+	1508: Cleaning some errant spaces in the codefiles. Attending to the design decisions on Branch 03.
+06.02.2025
+	1804: Next relevant question is what does the first implementation look like - in context of motor control for leg-joints? Bonus points for forth.
+26.03.2025
+	1653: Fixes have been implemented by the decision to "cascade" class constructors so that each subclass' constructor is called in series. The fix is applied through to Branch 04.
+27.03.2025
+	1100: Note that the "entry not found" error on Branch 04, Existence031, line 98: return (Interaction031)Interactions[label]; is correct in the context of self-programming. The code is creating its own new response and, of course, it is not in the present dictionary. How to compensate is an open question.
+10.04.2025
+	2104: Put Branch-01 through Branch-04 into ai-forth/ideal for the benefit of development.
