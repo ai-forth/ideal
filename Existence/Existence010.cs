@@ -1,7 +1,7 @@
-﻿using Cartheur.Ideal.Coupling;
-using Cartheur.Ideal.Coupling.Interaction;
+﻿using Ideal.Coupling;
+using Ideal.Coupling.Interaction;
 
-namespace Cartheur.Ideal.Existence
+namespace Ideal.Existence
 {
     public class Existence010 : IExistence
     {
@@ -20,7 +20,7 @@ namespace Cartheur.Ideal.Existence
 	    public string LABEL_R1 = "r1";
 	    public string LABEL_R2 = "r2";
 
-	    public enum Mood { SELF_SATISFIED, FRUSTRATED, BORED, PAINED, PLEASED };
+	    public enum Mood { SelfSatisfied, Frustrated, Bored, Pained, Pleased };
         /// <summary>
         /// Initializes a new instance of the <see cref="Existence010"/> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Cartheur.Ideal.Existence
         /// </summary>
         /// <param name="label">The label.</param>
         /// <returns></returns>
-        protected static Interaction010 CreateInteraction(string label)
+        protected virtual Interaction010 CreateInteraction(string label)
         {
             return new Interaction010(label);
         }
@@ -75,7 +75,7 @@ namespace Cartheur.Ideal.Existence
         /// </summary>
         /// <param name="label">The label of this interaction.</param>
         /// <returns>The interaction.</returns>
-        protected Interaction GetInteraction(string label)
+        protected virtual Interaction GetInteraction(string label)
         {
             return (Interaction)Interactions[label];
         }
@@ -94,6 +94,7 @@ namespace Cartheur.Ideal.Existence
                 Experiences.Add(label, CreateExperience(label));
             return Experiences.ContainsKey(label) ? Experiences[label] : null;
         }
+
         protected static Experiment CreateExperience(string label)
         {
             return new Experiment(label);
@@ -204,34 +205,36 @@ namespace Cartheur.Ideal.Existence
         /// Perform one step of a "stream of intelligence".
         /// </summary>
         /// <returns>
-        /// A string representing the "event of intelligence" that was performed.
+        /// S string representing the "event of intelligence" that was performed.
         /// </returns>
-        public string Step()
+        public virtual string Step()
         {
+
             Experiment experience = GetPreviousExperience();
-            if (GetMood() == Mood.BORED)
+            if (GetMood() == Mood.Bored)
             {
                 experience = GetOtherExperience(experience);
                 SetSelfSatisfactionCounter(0);
             }
 
             Result anticipatedResult = Predict(experience);
+
             Result result = ReturnResult010(experience);
+
             AddOrGetPrimitiveInteraction(experience, result);
 
             if (result == anticipatedResult)
             {
-                SetMood(Mood.SELF_SATISFIED);
+                SetMood(Mood.SelfSatisfied);
                 IncrementSelfSatisfactionCounter();
             }
             else
             {
-                SetMood(Mood.FRUSTRATED);
+                SetMood(Mood.Frustrated);
                 SetSelfSatisfactionCounter(0);
             }
-
             if (GetSelfSatisfactionCounter() >= BoredomLevel)
-                SetMood(Mood.BORED);
+                SetMood(Mood.Bored);
 
             SetPreviousExperience(experience);
 

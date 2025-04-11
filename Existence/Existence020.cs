@@ -1,7 +1,7 @@
-using Cartheur.Ideal.Coupling;
-using Cartheur.Ideal.Coupling.Interaction;
+using Ideal.Coupling;
+using Ideal.Coupling.Interaction;
 
-namespace Cartheur.Ideal.Existence
+namespace Ideal.Existence
 {
     /// <summary>
     ///  * An Existence020 is a sort of Existence010 in which each Interaction has a predefined Valence. When a given Experience is performed and a given Result is obtained, the corresponding Interaction is considered enacted.
@@ -32,10 +32,10 @@ namespace Cartheur.Ideal.Existence
             SetPreviousExperience(e1);
         }
 
-        public new string Step()
+        public override string Step()
         {
             Experiment experience = GetPreviousExperience();
-            if (GetMood() == Mood.PAINED)
+            if (GetMood() == Mood.Pained)
                 experience = GetOtherExperience(experience);
 
             Result result = ReturnResult010(experience);
@@ -43,9 +43,9 @@ namespace Cartheur.Ideal.Existence
             Interaction020 enactedInteraction = (Interaction020)AddOrGetPrimitiveInteraction(experience, result);
 
             if (enactedInteraction.GetValence() >= 0)
-                SetMood(Mood.PLEASED);
+                SetMood(Mood.Pleased);
             else
-                SetMood(Mood.PAINED);
+                SetMood(Mood.Pained);
 
             SetPreviousExperience(experience);
 
@@ -73,14 +73,12 @@ namespace Cartheur.Ideal.Existence
             return interaction;
         }
 
-
-        protected new Interaction020 CreateInteraction(string label)
+        protected override Interaction020 CreateInteraction(string label)
         {
             return new Interaction020(label);
         }
 
-
-        protected new Interaction020 GetInteraction(string label)
+        protected override Interaction020 GetInteraction(string label)
         {
             return (Interaction020)Interactions[(label)];
         }
