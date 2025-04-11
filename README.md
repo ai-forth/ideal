@@ -2,6 +2,11 @@
 
 The code is this repo is targeted to be _transmuted_ into the beautiful Forth language so that Ideal can be what its namesake implies.
 
+### What is here
+
+* Details regarding a formalization "initiative" is found [here](/initiative/README.md)
+* Project notes diary is found [here](/ProjectNotes.txt)
+
 ### Current status
 
 Branch-04 from the cartheur/ideal repo is contained herein. This means that the program will practise self-learning. It is clearly demonstrated when running this application and getting the error:
